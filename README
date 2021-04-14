@@ -1,0 +1,15 @@
+This is based on the Quickstart External Resources :https://github.com/eclipse/jkube/tree/master/quickstarts/maven/external-resources/
+The Demo.java replaces
+@Value("${welcome}")
+    private String welcome;
+with a static value ; otherwise I get a test error when k8s:build
+The jkube directory has deployment renamed to deployment-cr and configmap renamed to configmap-cr
+I omitted sa.yml and service.yml in the quickstart sice I only need an example of how to use a configmap
+Not that it matters. I added sa-cr.yml and service-cr.yml under jkube and i still get an k8s:resource error:
+
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.878 s
+[INFO] Finished at: 2021-04-14T11:02:05-04:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.eclipse.jkube:kubernetes-maven-plugin:1.2.0:resource (default-cli) on project JKubeResource: Failed to generate kubernetes descriptor: Cannot construct instance of `io.fabric8.kubernetes.api.model.ObjectMeta` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('name:ribbon')
